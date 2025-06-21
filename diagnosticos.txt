@@ -1,0 +1,24 @@
+Fecha y hora: 2025-06-20 22:08:50
+Tipo de Vehículo: Coche
+Problema: Frenos suenan
+Diagnósticos:
+- Los frenos del coche podrían estar desgastados o tener un problema con las pastillas.
+
+Fecha y hora: 2025-06-20 22:13:13
+Tipo de Vehículo: Coche
+Problema: Motor no enciende
+Diagnósticos:
+- El problema podría estar en otro componente no cubierto por la base de conocimientos.
+
+Fecha y hora: 2025-06-20 22:13:51
+Tipo de Vehículo: Moto
+Problema: cadena suena extraño
+Diagnósticos:
+- La cadena de la moto necesita ajuste, lubricación o reemplazo.
+
+Fecha y hora: 2025-06-20 22:16:28
+Tipo de Vehículo: Moto
+Problema: El motor no arranca
+Diagnósticos:
+- La batería de la moto está baja o muerta.
+
