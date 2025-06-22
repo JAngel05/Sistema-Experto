@@ -5,6 +5,7 @@ from tkinter import simpledialog, messagebox
 
 # Ramirez Hernandez Ismael
 # Alvaro Castillo Jesús Angel
+# Campa Quintanar Carlos
 
 # Base de Conocimiento y Hechos
 base_conocimiento = {
