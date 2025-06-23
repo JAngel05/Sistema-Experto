@@ -7,7 +7,7 @@ from tkinter import simpledialog, messagebox
 # Alvaro Castillo Jesús Angel
 # Campa Quintanar Carlos
 
-# Base de Conocimiento y Hechos
+# Base de Conocimiento (Hechos y Reglas)
 base_conocimiento = {
     "coche": {
         "hechos": {
@@ -73,24 +73,27 @@ def motor_inferencia(hechos, reglas):
 def guardar_diagnostico(descripcion, diagnosticos, tipo_vehiculo):
     directorio_actual = os.path.dirname(os.path.abspath(__file__))
     archivo_path = os.path.join(directorio_actual, "diagnosticos.txt")
-    
+
+    # Determina la fecha y hora por medio del dispostivo
     fecha_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with open(archivo_path, "a") as archivo:
+    #Se asigna una estructura para imprimir la información dentro del archivo .txt
         archivo.write(f"Fecha y hora: {fecha_hora}\n")
         archivo.write(f"Tipo de Vehículo: {tipo_vehiculo.capitalize()}\n")
         archivo.write(f"Problema: {descripcion}\n")
         archivo.write("Diagnósticos:\n")
+    # Guarda la información en el archivo .txt
         for diag in diagnosticos:
             archivo.write(f"- {diag}\n")
         archivo.write("\n")
     messagebox.showinfo("Guardado", f"El diagnóstico se guardó en el archivo {archivo_path}.")
 
-# Interfaz de Usuario (actualizada con detección de nuevos problemas)
+# Interfaz de Usuario
 def interfaz_usuario():
     ventana = tk.Tk()
     ventana.withdraw()
 
-    # Preguntar al usuario si es coche o moto
+    # Pregunta al usuario si es coche o moto
     tipo_vehiculo = simpledialog.askstring("Tipo de Vehículo", "¿Es un 'coche' o una 'moto'?", initialvalue="coche")
     if not tipo_vehiculo:
         messagebox.showwarning("Advertencia", "Debe seleccionar un tipo de vehículo.")
@@ -104,6 +107,7 @@ def interfaz_usuario():
     hechos_actuales = base_conocimiento[tipo_vehiculo]["hechos"]
     reglas_actuales = base_conocimiento[tipo_vehiculo]["reglas"]
 
+    # Pide al usuario ingresar el problema que presenta su vehiculo
     descripcion = simpledialog.askstring("Entrada", f"Describe el problema de la {tipo_vehiculo}:")
     if not descripcion:
         messagebox.showwarning("Advertencia", "Debe ingresar una descripción del problema.")
@@ -155,6 +159,7 @@ def interfaz_usuario():
         messagebox.showinfo("Diagnóstico", f"Lo siento, no puedo identificar el problema del/la {tipo_vehiculo} basado en la descripción proporcionada.")
         return
     
+    # imprime el diagnóstico para el usuario basado en la información proporcionada
     resultado = f"Descripción del problema de la {tipo_vehiculo}: {descripcion}\nDiagnóstico(s):\n"
     for diag in diagnosticos:
         resultado += f"- {diag}\n"
