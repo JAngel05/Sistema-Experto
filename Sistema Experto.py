@@ -23,15 +23,15 @@ base_conocimiento = {
             "vibracion_volante": False,
         },
         "reglas": [
-            {"condiciones": ["motor_no_enciende", "bateria_descargada"], "diagnostico": "La batería del coche necesita ser reemplazada."},
-            {"condiciones": ["luces_apagan"], "diagnostico": "El alternador del coche está dañado."},
-            {"condiciones": ["frenos_suenan"], "diagnostico": "Los frenos del coche podrían estar desgastados o tener un problema con las pastillas."},
-            {"condiciones": ["aire_acondicionado_no_enfria"], "diagnostico": "El aire acondicionado del coche podría estar sin refrigerante o tener un problema con el compresor."},
-            {"condiciones": ["ruido_suspension"], "diagnostico": "Problema con la suspensión del coche (amortiguadores, bujes, etc.)."},
-            {"condiciones": ["sobrecalentamiento_motor"], "diagnostico": "El motor del coche se está sobrecalentando. Revisa el sistema de enfriamiento."},
-            {"condiciones": ["aceite_bajo"], "diagnostico": "El nivel de aceite del motor está bajo. Verifica y rellena el aceite."},
-            {"condiciones": ["escape_humoso"], "diagnostico": "El escape está emitiendo humo. Podría indicar problemas en la combustión o fuga de aceite."},
-            {"condiciones": ["vibracion_volante"], "diagnostico": "Vibración en el volante. Podría ser problema de balanceo en las ruedas o alineación."},
+            {"condiciones": ["motor_no_enciende", "bateria_descargada"], "diagnostico": "El sistema de arranque no recibe suficiente energía. Se recomienda verificar el estado de la batería y el sistema de carga (alternador)."},
+            {"condiciones": ["luces_apagan"], "diagnostico": "La disminución de intensidad o el apagado de las luces indican una posible falla en el alternador o un problema con el regulador de voltaje. Inspeccione el sistema eléctrico."},
+            {"condiciones": ["frenos_suenan"], "diagnostico": "Ruido al frenar sugiere desgaste avanzado de las pastillas de freno, discos deformados o la presencia de contaminantes. Es crucial una inspección profesional del sistema de frenado."},
+            {"condiciones": ["aire_acondicionado_no_enfria"], "diagnostico": "La falta de enfriamiento del aire acondicionado puede deberse a una fuga de refrigerante, un compresor defectuoso o un problema en el sistema de climatización. Se aconseja una revisión especializada."},
+            {"condiciones": ["ruido_suspension"], "diagnostico": "Ruidos inusuales en la suspensión (golpeteos, crujidos) a menudo indican componentes desgastados como amortiguadores, bujes, rótulas o terminales de dirección. Un diagnóstico detallado es necesario para identificar el origen exacto."},
+            {"condiciones": ["sobrecalentamiento_motor"], "diagnostico": "El sobrecalentamiento del motor es crítico. Puede ser causado por un nivel bajo de refrigerante, un termostato defectuoso, una bomba de agua averiada o un radiador obstruido. Detenga el vehículo de inmediato y revise el sistema de enfriamiento."},
+            {"condiciones": ["aceite_bajo"], "diagnostico": "Un nivel bajo de aceite del motor puede provocar un desgaste excesivo de los componentes internos. Verifique inmediatamente el nivel y rellene con el tipo de aceite recomendado. Si el consumo es recurrente, investigue posibles fugas o problemas internos."},
+            {"condiciones": ["escape_humoso"], "diagnostico": "El color del humo del escape es indicativo: humo azulado sugiere quema de aceite, humo blanco persistente puede ser refrigerante, y humo negro indica una combustión rica. Esto requiere una evaluación del motor y el sistema de escape."},
+            {"condiciones": ["vibracion_volante"], "diagnostico": "La vibración en el volante, especialmente a ciertas velocidades, comúnmente indica un desequilibrio en las ruedas, problemas de alineación o, en casos más graves, componentes de la dirección o suspensión dañados."},
         ]
     },
     "moto": {
@@ -47,14 +47,14 @@ base_conocimiento = {
             "falla_encendido": False,
         },
         "reglas": [
-            {"condiciones": ["motor_no_arranca", "bateria_baja"], "diagnostico": "La batería de la moto está baja o muerta."},
-            {"condiciones": ["luces_fallan"], "diagnostico": "Problema eléctrico en la moto, posiblemente el regulador de voltaje."},
-            {"condiciones": ["cadena_suena_extraño"], "diagnostico": "La cadena de la moto necesita ajuste, lubricación o reemplazo."},
-            {"condiciones": ["frenos_chirrian"], "diagnostico": "Las pastillas de freno de la moto están desgastadas o necesitan limpieza."},
-            {"condiciones": ["problema_cambio_marchas"], "diagnostico": "Problema con el embrague o la transmisión de la moto."},
-            {"condiciones": ["pata_apoyo_no_funciona"], "diagnostico": "La pata de apoyo no funciona correctamente. Revisa el sensor o mecanismo."},
-            {"condiciones": ["consumo_excesivo"], "diagnostico": "Consumo excesivo de combustible. Verifica sistema de inyección o carburación."},
-            {"condiciones": ["falla_encendido"], "diagnostico": "Problemas al encender. Revisa bujías o sistema de encendido."},
+            {"condiciones": ["motor_no_arranca", "bateria_baja"], "diagnostico": "El motor no arranca debido a una batería con carga insuficiente o defectuosa. Revise las conexiones de la batería y su voltaje, y considere la recarga o reemplazo."},
+            {"condiciones": ["luces_fallan"], "diagnostico": "La intermitencia o inoperatividad de las luces sugiere una falla en el sistema eléctrico, posiblemente el regulador/rectificador, el estator o conexiones sueltas. Es necesaria una inspección del circuito eléctrico."},
+            {"condiciones": ["cadena_suena_extraño"], "diagnostico": "Un ruido anómalo en la cadena (golpeteo, chirrido) indica una tensión incorrecta, falta de lubricación, desgaste excesivo de la cadena o los piñones. Requiere ajuste, limpieza y lubricación, o posible reemplazo del kit de arrastre."},
+            {"condiciones": ["frenos_chirrian"], "diagnostico": "El chirrido de los frenos de la moto puede ser causado por pastillas de freno desgastadas, discos sucios o cristalizados, o un desajuste. Se recomienda una revisión y limpieza del sistema de frenado."},
+            {"condiciones": ["problema_cambio_marchas"], "diagnostico": "Dificultad al cambiar marchas o marchas que se saltan pueden indicar un problema con el embrague (ajuste, desgaste) o componentes internos de la transmisión. Es aconsejable una evaluación del sistema de embrague y caja de cambios."},
+            {"condiciones": ["pata_apoyo_no_funciona"], "diagnostico": "Si la pata de apoyo no se despliega o no se mantiene correctamente, podría ser un problema con el mecanismo, el resorte o un sensor de seguridad que impide el arranque. Verifique el mecanismo y cualquier sensor asociado."},
+            {"condiciones": ["consumo_excesivo"], "diagnostico": "Un consumo de combustible inusualmente alto puede ser síntoma de un carburador desajustado, inyectores sucios, filtro de aire obstruido o problemas en el sistema de encendido. Se sugiere una revisión del sistema de alimentación."},
+            {"condiciones": ["falla_encendido"], "diagnostico": "Dificultad para encender la moto indica posibles fallos en las bujías, el sistema de encendido (bobina, CDI) o el suministro de combustible. Revise estos componentes para asegurar una chispa y mezcla adecuadas."},
         ]
     }
 }
@@ -66,7 +66,7 @@ def motor_inferencia(hechos, reglas):
         if all(hechos[condicion] for condicion in regla["condiciones"]):
             diagnosticos.append(regla["diagnostico"])
     if not diagnosticos:
-        diagnosticos.append("El problema podría estar en otro componente no cubierto por la base de conocimientos.")
+        diagnosticos.append("El problema podría estar en otro componente no cubierto por la base de conocimientos o requiere una evaluación más profunda por un especialista.")
     return diagnosticos
 
 # Modulo de comunicaciones

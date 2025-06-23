@@ -22,3 +22,9 @@ Problema: El motor no arranca
 Diagnósticos:
 - La batería de la moto está baja o muerta.
 
+Fecha y hora: 2025-06-23 00:11:59
+Tipo de Vehículo: Moto
+Problema: la cadena hace ruido 
+Diagnósticos:
+- Un ruido anómalo en la cadena (golpeteo, chirrido) indica una tensión incorrecta, falta de lubricación, desgaste excesivo de la cadena o los piñones. Requiere ajuste, limpieza y lubricación, o posible reemplazo del kit de arrastre.
+
