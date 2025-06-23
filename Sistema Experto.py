@@ -5,6 +5,7 @@ from tkinter import simpledialog, messagebox
 
 # Ramirez Hernandez Ismael
 # Alvaro Castillo Jesús Angel
+# Campa Quintanar Carlos
 
 # Base de Conocimiento y Hechos
 base_conocimiento = {
@@ -17,6 +18,9 @@ base_conocimiento = {
             "aire_acondicionado_no_enfria": False,
             "ruido_suspension": False,
             "sobrecalentamiento_motor": False,
+            "aceite_bajo": False,
+            "escape_humoso": False,
+            "vibracion_volante": False,
         },
         "reglas": [
             {"condiciones": ["motor_no_enciende", "bateria_descargada"], "diagnostico": "La batería del coche necesita ser reemplazada."},
@@ -25,6 +29,9 @@ base_conocimiento = {
             {"condiciones": ["aire_acondicionado_no_enfria"], "diagnostico": "El aire acondicionado del coche podría estar sin refrigerante o tener un problema con el compresor."},
             {"condiciones": ["ruido_suspension"], "diagnostico": "Problema con la suspensión del coche (amortiguadores, bujes, etc.)."},
             {"condiciones": ["sobrecalentamiento_motor"], "diagnostico": "El motor del coche se está sobrecalentando. Revisa el sistema de enfriamiento."},
+            {"condiciones": ["aceite_bajo"], "diagnostico": "El nivel de aceite del motor está bajo. Verifica y rellena el aceite."},
+            {"condiciones": ["escape_humoso"], "diagnostico": "El escape está emitiendo humo. Podría indicar problemas en la combustión o fuga de aceite."},
+            {"condiciones": ["vibracion_volante"], "diagnostico": "Vibración en el volante. Podría ser problema de balanceo en las ruedas o alineación."},
         ]
     },
     "moto": {
@@ -35,6 +42,9 @@ base_conocimiento = {
             "cadena_suena_extraño": False,
             "frenos_chirrian": False,
             "problema_cambio_marchas": False,
+            "pata_apoyo_no_funciona": False,
+            "consumo_excesivo": False,
+            "falla_encendido": False,
         },
         "reglas": [
             {"condiciones": ["motor_no_arranca", "bateria_baja"], "diagnostico": "La batería de la moto está baja o muerta."},
@@ -42,6 +52,9 @@ base_conocimiento = {
             {"condiciones": ["cadena_suena_extraño"], "diagnostico": "La cadena de la moto necesita ajuste, lubricación o reemplazo."},
             {"condiciones": ["frenos_chirrian"], "diagnostico": "Las pastillas de freno de la moto están desgastadas o necesitan limpieza."},
             {"condiciones": ["problema_cambio_marchas"], "diagnostico": "Problema con el embrague o la transmisión de la moto."},
+            {"condiciones": ["pata_apoyo_no_funciona"], "diagnostico": "La pata de apoyo no funciona correctamente. Revisa el sensor o mecanismo."},
+            {"condiciones": ["consumo_excesivo"], "diagnostico": "Consumo excesivo de combustible. Verifica sistema de inyección o carburación."},
+            {"condiciones": ["falla_encendido"], "diagnostico": "Problemas al encender. Revisa bujías o sistema de encendido."},
         ]
     }
 }
@@ -72,7 +85,7 @@ def guardar_diagnostico(descripcion, diagnosticos, tipo_vehiculo):
         archivo.write("\n")
     messagebox.showinfo("Guardado", f"El diagnóstico se guardó en el archivo {archivo_path}.")
 
-# Interfaz de Usuario
+# Interfaz de Usuario (actualizada con detección de nuevos problemas)
 def interfaz_usuario():
     ventana = tk.Tk()
     ventana.withdraw()
@@ -96,11 +109,11 @@ def interfaz_usuario():
         messagebox.showwarning("Advertencia", "Debe ingresar una descripción del problema.")
         return
 
-    # Reiniciar hechos para la sesión actual (importante para que no arrastre hechos de ejecuciones anteriores)
+    # Reiniciar hechos para la sesión actual
     for key in hechos_actuales:
         hechos_actuales[key] = False
 
-    # Detectar hechos basados en la descripción usando frases más coloquiales
+    # Detectar hechos basados en la descripción
     descripcion_lower = descripcion.lower()
     if tipo_vehiculo == "coche":
         hechos_actuales["motor_no_enciende"] = any(phrase in descripcion_lower for phrase in ["motor no enciende", "no arranca el motor", "el carro no prende"])
@@ -109,6 +122,10 @@ def interfaz_usuario():
         hechos_actuales["aire_acondicionado_no_enfria"] = any(phrase in descripcion_lower for phrase in ["aire acondicionado no enfria", "el clima no enfría", "no sale aire frío del aire"])
         hechos_actuales["ruido_suspension"] = any(phrase in descripcion_lower for phrase in ["ruido suspension", "ruido en la suspensión", "suena al pasar baches", "golpeteo al andar"])
         hechos_actuales["sobrecalentamiento_motor"] = any(phrase in descripcion_lower for phrase in ["sobrecalentamiento motor", "se calienta el motor", "temperatura alta del motor", "se sube la aguja de la temperatura"])
+        hechos_actuales["aceite_bajo"] = any(phrase in descripcion_lower for phrase in ["aceite bajo", "nivel de aceite bajo", "poco aceite", "luce de aceite encendida"])
+        hechos_actuales["escape_humoso"] = any(phrase in descripcion_lower for phrase in ["escape humoso", "humo del escape", "sale humo del tubo", "escape echa humo"])
+        hechos_actuales["vibracion_volante"] = any(phrase in descripcion_lower for phrase in ["vibracion volante", "vibra el volante", "steering wheel shakes", "vibra al conducir"])
+        
     elif tipo_vehiculo == "moto":
         hechos_actuales["motor_no_arranca"] = any(phrase in descripcion_lower for phrase in ["motor no arranca", "la moto no prende", "no enciende la moto"])
         hechos_actuales["bateria_baja"] = any(phrase in descripcion_lower for phrase in ["bateria baja", "batería sin carga", "se le acabó la batería"])
@@ -116,6 +133,9 @@ def interfaz_usuario():
         hechos_actuales["cadena_suena_extraño"] = any(phrase in descripcion_lower for phrase in ["cadena suena extraño", "la cadena hace ruido", "suena raro la cadena"])
         hechos_actuales["frenos_chirrian"] = any(phrase in descripcion_lower for phrase in ["frenos chirrian", "los frenos de la moto chillan", "rechinan los frenos de la moto"])
         hechos_actuales["problema_cambio_marchas"] = any(phrase in descripcion_lower for phrase in ["problema cambio marchas", "no entran las marchas", "le cuesta cambiar de velocidad", "se traba el cambio"])
+        hechos_actuales["pata_apoyo_no_funciona"] = any(phrase in descripcion_lower for phrase in ["pata apoyo no funciona", "no funciona la pata", "problema con el caballete", "sensor de pata falla"])
+        hechos_actuales["consumo_excesivo"] = any(phrase in descripcion_lower for phrase in ["consumo excesivo", "gasta mucha gasolina", "alto consumo combustible", "rendimiento bajo"])
+        hechos_actuales["falla_encendido"] = any(phrase in descripcion_lower for phrase in ["falla encendido", "problema al encender", "no prende bien", "tarda en arrancar"])
 
     if not any(hechos_actuales.values()):
         messagebox.showinfo("Diagnóstico", f"Lo siento, no puedo identificar el problema del/la {tipo_vehiculo} basado en la descripción proporcionada.")
